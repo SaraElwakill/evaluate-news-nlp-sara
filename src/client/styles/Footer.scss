@@ -1,0 +1,23 @@
+footer {
+    width: 100%;
+    height: 40px;
+    position: absolute;
+    bottom: 0;
+    background-color: #eee;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    img {
+      height: 40px;
+      width: 60px;
+      color: #575965;
+      position:relative;
+      top: 20px;
+      margin-left: 10px;
+    }
+    p{
+      position:relative;
+      bottom: 15px;
+    }
+  }
+  
