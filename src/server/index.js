@@ -4,9 +4,8 @@ const cors= require("cors");
 const app = express();
 const port = process.env.PORT || 5001 ;
 const fetch = (...args) =>
-    import("node-fetch").then(({ default: fetch }) => fetch(...args));
-    const mockAPIRes = require("./mockAPI.js");
-
+import("node-fetch").then(({ default: fetch }) => fetch(...args));
+const mockAPIRes = require("./mockAPI.js");
 
 app.use(cors());
 app.use(express.json());
@@ -19,7 +18,8 @@ app.get("/test", (req, res)=>{
 app.post("/",async (req,res)=>{
     const url = req.body.url;
     const privateKey=process.env.API_KEY; 
-    const returnedData= await fetch(`https://api.meaningcloud.com/sentiment-2.1?key=${privateKey}&url=${url}&lang=en`)
+    const returnedData={};
+    returnedData= await fetch(`https://api.meaningcloud.com/sentiment-2.1?key=${privateKey}&url=${url}&lang=en`)
     .then((res) => res.json())
     .catch((error) => console.log(error));
   const {
@@ -30,6 +30,7 @@ app.post("/",async (req,res)=>{
   } = returnedData;
   res.status(200).json({
     agreement,
+    
     confidence,
     subjectivity,
     status,
@@ -38,7 +39,7 @@ app.post("/",async (req,res)=>{
 
 app.listen(port, ()=>{
     console.log(`server is running on port :  ${port}`);
-});
+})
 
 
 
