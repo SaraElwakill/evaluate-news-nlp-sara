@@ -20,7 +20,7 @@ app.post("/",async (req,res)=>{
     const privateKey=process.env.API_KEY; 
     const returnedData= await fetch(`https://api.meaningcloud.com/sentiment-2.1?key=${privateKey}&url=${url}&lang=en`)
     .then((res) => res.json())
-    .catch((error) => console.log(error));
+    .catch((error) => {throw(error)});
   const {
     agreement,
     confidence,
